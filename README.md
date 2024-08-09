@@ -1,1 +1,2 @@
 # Qubi-Server
+dead project
