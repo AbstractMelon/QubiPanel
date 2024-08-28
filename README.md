@@ -1,2 +1,2 @@
 # Qubi-Server
-dead project
+General use pm2/pufferpanel
