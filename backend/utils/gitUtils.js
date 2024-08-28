@@ -8,14 +8,26 @@ async function cloneRepo(repoUrl) {
   const repoName = path.basename(repoUrl, '.git');
   const appPath = path.join(appsDir, repoName);
 
-  // Remove if the folder already exists
-  await fs.remove(appPath);
+  try {
+    console.log(`Cloning repo: ${repoUrl}`);
+    console.log(`Target path: ${appPath}`);
 
-  // Clone the repository
-  const git = simpleGit();
-  await git.clone(repoUrl, appPath);
+    // Remove if the folder already exists
+    if (await fs.pathExists(appPath)) {
+      console.log(`Removing existing directory: ${appPath}`);
+      await fs.remove(appPath);
+    }
 
-  return appPath;
+    // Clone the repository
+    const git = simpleGit();
+    await git.clone(repoUrl, appPath);
+
+    console.log(`Successfully cloned ${repoUrl} to ${appPath}`);
+    return appPath;
+  } catch (error) {
+    console.error(`Failed to clone repo: ${repoUrl}`, error);
+    throw error; // Re-throw to allow higher-level handling
+  }
 }
 
 module.exports = { cloneRepo };

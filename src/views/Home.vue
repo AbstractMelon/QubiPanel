@@ -2,14 +2,10 @@
     <div class="container">
       <h1>Application Manager</h1>
       <form @submit.prevent="importAppFromGitHub" class="import-form">
-        <input
-          v-model="repoUrl"
-          type="url"
-          placeholder="Enter GitHub Repo URL"
-          required
-        />
+        <input v-model="repoUrl" type="url" placeholder="Enter GitHub Repo URL" required />
         <button type="submit">Import</button>
       </form>
+      <!-- Pass the applications array to AppList -->
       <AppList :applications="applications" />
     </div>
   </template>

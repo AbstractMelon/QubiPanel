@@ -12,6 +12,7 @@
   const applications = defineProps({
     applications: Array,
   });
+  console.log(JSON.stringify(applications));
   </script>
   
   <style>
