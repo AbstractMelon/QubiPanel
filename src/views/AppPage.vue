@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="app">
     <h2>{{ app.name }}</h2>
     <div>
       <button @click="activeTab = 'terminal'">Terminal</button>
@@ -11,6 +11,9 @@
     <div v-else>
       <FileStructure :files="app.files" />
     </div>
+  </div>
+  <div v-else>
+    <p>Application not found.</p>
   </div>
 </template>
 
